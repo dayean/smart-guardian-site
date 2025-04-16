@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>보호자 등록</title>
+</head>
+<body>
+  <h2>👨‍👩‍👧 보호자 등록</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% for i in range(1, 6) %}
+      <h4>보호자 {{ i }}</h4>
+      이름: <input type="text" name="name{{ i }}"><br>
+      연락처: <input type="text" name="phone{{ i }}"><br>
+      사진: <input type="file" name="photo{{ i }}"><br><br>
+    {% endfor %}
+    <button type="submit">등록 완료</button>
+  </form>
+</body>
+</html>

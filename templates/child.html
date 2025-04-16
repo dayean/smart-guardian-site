@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>보호자 확인</title>
+</head>
+<body>
+  <h2>👶 보호자를 확인해주세요</h2>
+  <p>이 아이는 등록된 보호자 외에는 인도할 수 없습니다.</p>
+
+  <ul>
+    {% for g in guardians %}
+      <li>
+        {% if g.photo %}
+          <img src="{{ url_for('static', filename='uploads/' ~ g.photo) }}" width="100"><br>
+        {% endif %}
+        {{ g.name }} - 📱 {{ g.phone }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <a href="/handover/{{ child_id }}">👋 아이 인도하기 (서명)</a><br>
+  <a href="/edit/{{ child_id }}">✏️ 보호자 수정하기</a><br>
+  <a href="/export_pdf/{{ child_id }}">📄 인도기록 PDF 다운로드</a>
+</body>
+</html>

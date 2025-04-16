@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>보호자 정보 수정</title>
+</head>
+<body>
+  <h2>✏️ 보호자 정보 수정</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% for g in guardians %}
+      <hr>
+      <h4>보호자 {{ loop.index }}</h4>
+      이름: <input type="text" name="name{{ loop.index }}" value="{{ g.name }}"><br>
+      연락처: <input type="text" name="phone{{ loop.index }}" value="{{ g.phone }}"><br>
+
+      {% if g.photo %}
+        현재 사진:<br>
+        <img src="{{ url_for('static', filename='uploads/' ~ g.photo) }}" width="100"><br>
+        <input type="hidden" name="existing_photo{{ loop.index }}" value="{{ g.photo }}">
+      {% endif %}
+
+      새 사진: <input type="file" name="photo{{ loop.index }}"><br>
+      삭제: <input type="checkbox" name="delete{{ loop.index }}"> 이 보호자 삭제<br><br>
+    {% endfor %}
+    <button type="submit">수정 완료</button>
+  </form>
+</body>
+</html>
